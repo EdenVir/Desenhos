@@ -8,14 +8,16 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(name = "items")
 public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
 
-
-    private String Name;
+    @Column(name = "name")
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "lists_id")
