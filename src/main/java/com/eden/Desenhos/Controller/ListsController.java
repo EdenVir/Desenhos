@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/../Lists")
+@RequestMapping("Lists")
 public class ListsController {
 
     @Autowired
@@ -21,7 +21,9 @@ public class ListsController {
     }
 
     @PostMapping
-    public Lists createLists(@RequestBody Lists lists) {
+
+    public Lists createLists(@RequestBody  Lists lists) {
+
         return listsService.createLists(lists);
     }
 
