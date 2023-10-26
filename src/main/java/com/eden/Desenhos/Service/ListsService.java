@@ -22,4 +22,14 @@ public class ListsService {
         return listsRepository.save(lists);
     }
 
+    public boolean deleteLists(Long id){
+        if(listsRepository.existsById(id)){
+            listsRepository.deleteById(id);
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+
 }
