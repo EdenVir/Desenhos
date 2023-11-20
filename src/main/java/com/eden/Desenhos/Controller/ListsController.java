@@ -13,27 +13,31 @@ import java.util.List;
 @RequestMapping("Lists")
 public class ListsController {
 
+
+    private final ListsService listsService;
     @Autowired
-    private ListsService listsService;
+    public ListsController(ListsService listsService) {
+        this.listsService = listsService;
+    }
+
+    @PostMapping
+    public Lists createLists(@RequestBody Lists lists) {
+
+        return listsService.createLists(lists);
+    }
 
     @GetMapping
     public List<Lists> getAllLists() {
         return listsService.getAllLists();
     }
 
-    @PostMapping
-    public Lists createLists(@RequestBody  Lists lists) {
-
-        return listsService.createLists(lists);
-    }
-
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteLists(@PathVariable long id){
+    @DeleteMapping("/Lists/{id}")
+    public ResponseEntity<String> deleteLists(@PathVariable long id) {
         boolean deleted = listsService.deleteLists(id);
 
-        if(deleted){
+        if (deleted) {
             return ResponseEntity.ok("A lista com esse id " + id + " foi deletado.");
-        }else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }

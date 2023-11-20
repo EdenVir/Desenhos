@@ -1,7 +1,6 @@
 package com.eden.Desenhos.Entity;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,17 +8,19 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity @Getter @Setter
-@Table(name ="lists")
+@Entity
+@Getter
+@Setter
+@Table(name = "lists")
 public class Lists {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name= "id")
+    @Column(name = "id")
     private long id;
 
 
-    @Column(name= "name")
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "lists", cascade = CascadeType.ALL, orphanRemoval = true)

@@ -11,15 +11,27 @@ import java.util.List;
 @Service
 public class ListsService {
 
+
+    private final ListsRepository listsRepository;
     @Autowired
-    private ListsRepository listsRepository;
+    public ListsService(ListsRepository listsRepository) {
+        this.listsRepository = listsRepository;
+    }
 
     public List<Lists> getAllLists() {
         return listsRepository.findAll();
     }
 
     public Lists createLists(Lists lists){
+        if (countLists() >=2)
+            throw new RuntimeException("Número de máximo de listas atingidas");
+
         return listsRepository.save(lists);
+    }
+
+    private long countLists(){
+
+        return listsRepository.count();
     }
 
     public boolean deleteLists(Long id){

@@ -16,18 +16,18 @@ public class ItemController {
     private ItemService itemService;
 
     @GetMapping
-    public List<Item> getAllItems(){
+    public List<Item> getAllItems() {
         return itemService.getAllItems();
     }
 
     @PostMapping
-    public Item createItem(@RequestBody Item item){
+    public Item createItem(@RequestBody Item item) {
         return itemService.createItem(item);
 
     }
 
     @GetMapping("drawItem/{list_Id}")
-    public Item drawItem(@PathVariable Long list_id){
+    public Item drawItem(@PathVariable Long list_id) {
         return itemService.drawItem(list_id);
     }
 }
